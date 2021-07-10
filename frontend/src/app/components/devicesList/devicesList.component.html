@@ -9,6 +9,16 @@
     <td mat-cell *matCellDef="let device">{{ device.color }}</td>
   </ng-container>
 
+  <ng-container matColumnDef="partNumber">
+    <th mat-header-cell *matHeaderCellDef>Part No</th>
+    <td mat-cell *matCellDef="let device">{{ device.partNumber }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="categoryName">
+    <th mat-header-cell *matHeaderCellDef>Category</th>
+    <td mat-cell *matCellDef="let device">{{ device.categoryName }}</td>
+  </ng-container>
+
   <ng-container matColumnDef="delete">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let device">

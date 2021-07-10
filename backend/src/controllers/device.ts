@@ -1,7 +1,7 @@
 import { Express } from 'express';
 import { Connection } from 'mysql';
 
-const getDevicesQuery = `SELECT * FROM devices`;
+const getDevicesQuery = `SELECT d.id, d.color, d.partNumber, c.name as categoryName FROM devices d INNER JOIN categories c ON d.category = c.id`;
 
 const addDeviceQuery = (color: string, partNumber: number, category: number) =>
   `INSERT INTO devices (color, partNumber, category) VALUES (${color}, ${partNumber}, ${category})`;

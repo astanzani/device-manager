@@ -7,5 +7,5 @@ export interface Device {
   id: number;
   color: string;
   partNumber: number;
-  category: number;
+  categoryName: string;
 }

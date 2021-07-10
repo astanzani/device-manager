@@ -13,7 +13,13 @@ import { Category, Device } from '../../types';
 export class DevicesListComponent implements AfterViewInit {
   @ViewChild(MatTable) table!: MatTable<any>;
   devices: Device[] = [];
-  displayedColumns: string[] = ['id', 'color', 'delete'];
+  displayedColumns: string[] = [
+    'id',
+    'color',
+    'partNumber',
+    'categoryName',
+    'delete',
+  ];
 
   constructor(private deviceService: DeviceService) {}
 
