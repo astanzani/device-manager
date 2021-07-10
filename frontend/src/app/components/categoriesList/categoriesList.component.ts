@@ -12,19 +12,19 @@ import { Category } from '../../types';
 export class CategoriesListComponent implements AfterViewInit {
   @ViewChild(MatTable) table!: MatTable<any>;
   categories: Category[] = [];
-  displayedColumns: string[] = ['id', 'name'];
+  displayedColumns: string[] = ['id', 'name', 'delete'];
 
   constructor(private categoryService: CategoryService) {}
 
   ngAfterViewInit() {
-    this.fetchDevices();
+    this.fetchCategories();
   }
 
   delete(category: Category) {
     console.log('delete category: ' + category.name);
   }
 
-  private fetchDevices() {
+  private fetchCategories() {
     this.categoryService.getCategories().subscribe((categories) => {
       this.categories = categories;
       this.table.renderRows();
