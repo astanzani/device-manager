@@ -2,6 +2,9 @@ import express from 'express';
 import mysql from 'mysql';
 import dotenv from 'dotenv';
 
+import categoryController from './controllers/category';
+import deviceController from './controllers/device';
+
 dotenv.config();
 
 const app = express();
@@ -24,6 +27,9 @@ async function start() {
       console.error(err);
     }
   });
+
+  categoryController(app, dbConnection);
+  deviceController(app, dbConnection);
 
   app.listen(port, () => {
     console.log(`server listening at http://localhost:${port}`);
