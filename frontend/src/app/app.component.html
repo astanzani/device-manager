@@ -6,11 +6,23 @@
       <mat-option value="devices"> Devices </mat-option>
     </mat-select>
   </mat-form-field>
-  <div>
-    <ul>
-      <li *ngFor="let category of categories">
-        <span>{{ category.name }}</span>
-      </li>
-    </ul>
+  <!-- <div *ngIf="selected === 'categories'">
+    <mat-list role="list">
+      <mat-list-item *ngFor="let category of categories">
+        {{ category.name }}
+        <button mat-icon-button>
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
   </div>
+  <div *ngIf="selected === 'devices'">
+    <mat-list role="list">
+      <mat-list-item *ngFor="let device of devices">
+        {{ device.color }}
+      </mat-list-item>
+    </mat-list>
+  </div> -->
+  <devices-list *ngIf="selected === 'devices'"></devices-list>
+  <categories-list *ngIf="selected === 'categories'"></categories-list>
 </div>

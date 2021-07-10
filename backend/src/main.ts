@@ -1,6 +1,7 @@
 import express from 'express';
 import mysql from 'mysql';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 import categoryController from './controllers/category';
 import deviceController from './controllers/device';
@@ -9,6 +10,7 @@ dotenv.config();
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 async function start() {

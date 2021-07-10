@@ -5,12 +5,17 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { DevicesListComponent } from './components/devicesList/devicesList.component';
+import { CategoriesListComponent } from './components/categoriesList/categoriesList.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DevicesListComponent, CategoriesListComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -19,6 +24,9 @@ import { AppComponent } from './app.component';
     MatFormFieldModule,
     MatSelectModule,
     HttpClientModule,
+    MatListModule,
+    MatIconModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

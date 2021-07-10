@@ -1,28 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatTable } from '@angular/material/table';
 
 import { CategoryService } from './services/category';
-import { Category } from './types';
-
+import { DeviceService } from './services/device';
+import { Category, Device } from './types';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
-  title = 'frontend';
+export class AppComponent {
   selected = 'categories';
-
-  categories: Category[] = [];
-
-  constructor(private categoryService: CategoryService) {}
-
-  ngOnInit() {
-    this.fetchCategories();
-  }
-
-  private fetchCategories() {
-    this.categoryService
-      .getCategories()
-      .subscribe((categories) => (this.categories = categories));
-  }
 }
