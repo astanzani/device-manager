@@ -35,8 +35,10 @@ export class DevicesListComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe((addedDevice: Device) => {
-      this.devices.push(addedDevice);
-      this.table.renderRows();
+      if (addedDevice) {
+        this.devices.push(addedDevice);
+        this.table.renderRows();
+      }
     });
   }
 

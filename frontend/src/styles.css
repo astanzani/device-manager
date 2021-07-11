@@ -11,3 +11,11 @@ body {
 body {
   background: #303030;
 }
+
+label {
+  color: #fff !important;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: #ea71ff;
+}

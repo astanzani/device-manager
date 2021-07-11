@@ -3,11 +3,23 @@
   <div class="form-wrapper">
     <mat-form-field appearance="fill">
       <mat-label>Color</mat-label>
-      <input matInput [(ngModel)]="device.color" />
+      <input
+        matInput
+        [(ngModel)]="device.color"
+        required
+        maxlength="16"
+        pattern="[a-zA-Z]+"
+      />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Part No</mat-label>
-      <input matInput [(ngModel)]="device.partNumber" />
+      <input
+        matInput
+        [(ngModel)]="device.partNumber"
+        required
+        type="number"
+        min="0"
+      />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Select a category</mat-label>
@@ -17,6 +29,13 @@
         }}</mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="addDevice()">Add</button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="addDevice()"
+      [disabled]="!submitEnabled()"
+    >
+      Add
+    </button>
   </div>
 </div>

@@ -3,9 +3,14 @@
   <div class="form-wrapper">
     <mat-form-field appearance="fill">
       <mat-label>Name</mat-label>
-      <input matInput [(ngModel)]="category.name" />
+      <input matInput [(ngModel)]="category.name" maxlength="128" required />
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="addCategory()">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="addCategory()"
+      [disabled]="!category.name"
+    >
       Add
     </button>
   </div>

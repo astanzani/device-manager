@@ -7,7 +7,7 @@ import { Category } from 'src/app/types';
 type DeviceData = {
   color: string;
   partNumber: number;
-  category: number;
+  category: number | undefined;
 };
 
 @Component({
@@ -16,13 +16,14 @@ type DeviceData = {
   styleUrls: ['./addDeviceDialog.component.css'],
 })
 export class AddDeviceDialogComponent implements OnInit {
-  selected = 0;
+  categories: Category[] = [];
+  selected = this.categories.length > 0 ? this.categories[0].id : undefined;
   device: DeviceData = {
     color: '',
-    category: 0,
+    category: undefined,
     partNumber: 0,
   };
-  categories: Category[] = [];
+  submitEnabled = () => !!this.device.color && this.selected != null;
 
   constructor(
     public dialogRef: MatDialogRef<AddDeviceDialogComponent>,
@@ -37,12 +38,12 @@ export class AddDeviceDialogComponent implements OnInit {
   }
 
   addDevice() {
-    // if (this.category) {
-    this.deviceService
-      .addDevice({ ...this.device, category: this.selected })
-      .subscribe((addedDevice) => {
-        this.dialogRef.close(addedDevice);
-      });
-    // }
+    if (this.selected) {
+      this.deviceService
+        .addDevice({ ...this.device, category: this.selected })
+        .subscribe((addedDevice) => {
+          this.dialogRef.close(addedDevice);
+        });
+    }
   }
 }

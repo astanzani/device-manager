@@ -40,8 +40,10 @@ export class CategoriesListComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe((addedCategory: Category) => {
-      this.categories.push(addedCategory);
-      this.table.renderRows();
+      if (addedCategory) {
+        this.categories.push(addedCategory);
+        this.table.renderRows();
+      }
     });
   }
 

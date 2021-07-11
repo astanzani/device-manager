@@ -3,9 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Category } from '../types';
 
+declare let process: any;
+
 @Injectable({ providedIn: 'root' })
 export class CategoryService {
-  private url = '/categories';
+  private url =
+    process.env.NODE_ENV === 'production'
+      ? '/categories'
+      : 'http://localhost:8080/categories';
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient) {}

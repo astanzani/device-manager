@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Device } from '../types';
 
+declare let process: any;
+
 type DeviceData = {
   color: string;
   partNumber: number;
@@ -11,7 +13,10 @@ type DeviceData = {
 
 @Injectable({ providedIn: 'root' })
 export class DeviceService {
-  private url = '/devices';
+  private url =
+    process.env.NODE_ENV === 'production'
+      ? '/devices'
+      : 'http://localhost:8080/devices';
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient) {}
