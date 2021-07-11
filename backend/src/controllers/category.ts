@@ -9,6 +9,8 @@ const addCategoryQuery = (name: string) =>
 const deleteCategoryQuery = (id: number) =>
   `DELETE FROM categories WHERE id = ${id}`;
 
+const getInsertedIdQuery = `SELECT LAST_INSERT_ID();`;
+
 export default function (app: Express, db: Connection) {
   app.get('/categories', (req, res) => {
     db.query(getCategoriesQuery, (err, result) => {
@@ -20,7 +22,13 @@ export default function (app: Express, db: Connection) {
     const { name } = req.body;
 
     db.query(addCategoryQuery(db.escape(name)), (err, result) => {
-      res.json(result);
+      if (!err) {
+        db.query(getInsertedIdQuery, (err, result) => {
+          if (result) {
+            res.json({ id: result[0]['LAST_INSERT_ID()'], name });
+          }
+        });
+      }
     });
   });
 

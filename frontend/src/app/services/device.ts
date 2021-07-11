@@ -3,6 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Device } from '../types';
 
+type DeviceData = {
+  color: string;
+  partNumber: number;
+  category: number;
+};
+
 @Injectable({ providedIn: 'root' })
 export class DeviceService {
   private url = 'http://localhost:8080/devices';
@@ -14,7 +20,7 @@ export class DeviceService {
     return this.http.get<Device[]>(this.url);
   }
 
-  public addDevice(device: Omit<Device, 'id'>) {
+  public addDevice(device: DeviceData) {
     return this.http.post<Device>(this.url, device, {
       headers: this.headers,
     });

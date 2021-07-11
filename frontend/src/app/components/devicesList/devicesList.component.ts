@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 
 import { CategoryService } from '../../services/category';
 import { DeviceService } from '../../services/device';
 import { Category, Device } from '../../types';
+import { AddDeviceDialogComponent } from './addDeviceDialog/addDeviceDialog.component';
 
 @Component({
   selector: 'devices-list',
@@ -21,14 +23,26 @@ export class DevicesListComponent implements AfterViewInit {
     'delete',
   ];
 
-  constructor(private deviceService: DeviceService) {}
+  constructor(private deviceService: DeviceService, public dialog: MatDialog) {}
 
   ngAfterViewInit() {
     this.fetchDevices();
   }
 
+  openAddDialog() {
+    const dialogRef = this.dialog.open(AddDeviceDialogComponent, {
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe((addedDevice: Device) => {
+      this.devices.push(addedDevice);
+      this.table.renderRows();
+    });
+  }
+
   delete(device: Device) {
-    console.log('delete category: ' + device.color);
+    this.devices = this.devices.filter((d) => d.id !== device.id);
+    this.deviceService.deleteDevice(device.id).subscribe();
   }
 
   private fetchDevices() {
