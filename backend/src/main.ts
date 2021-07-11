@@ -2,6 +2,7 @@ import express from 'express';
 import mysql from 'mysql';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import path from 'path';
 
 import categoryController from './controllers/category';
 import deviceController from './controllers/device';
@@ -32,6 +33,14 @@ async function start() {
 
   categoryController(app, dbConnection);
   deviceController(app, dbConnection);
+
+  app.use(express.static(path.join(__dirname, '../../frontend/dist/frontend')));
+
+  app.get('/*', (req, res) => {
+    res.sendFile(
+      path.join(__dirname, '../../frontend/dist/frontend/index.html')
+    );
+  });
 
   app.listen(port, () => {
     console.log(`server listening at http://localhost:${port}`);

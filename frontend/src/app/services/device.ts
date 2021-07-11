@@ -11,7 +11,7 @@ type DeviceData = {
 
 @Injectable({ providedIn: 'root' })
 export class DeviceService {
-  private url = 'http://localhost:8080/devices';
+  private url = '/devices';
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient) {}

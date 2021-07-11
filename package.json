@@ -1,0 +1,12 @@
+{
+  "name": "device-manager",
+  "license": "MIT",
+  "engines": {
+    "node": ">=10.15.3"
+  },
+  "scripts": {
+    "build": "cd backend && npm i && npm run build && cd ../frontend && npm i && npm run build"
+  },
+  "dependencies": {
+  }
+}

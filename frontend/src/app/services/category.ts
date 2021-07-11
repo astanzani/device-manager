@@ -5,7 +5,7 @@ import { Category } from '../types';
 
 @Injectable({ providedIn: 'root' })
 export class CategoryService {
-  private url = 'http://localhost:8080/categories';
+  private url = '/categories';
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient) {}
