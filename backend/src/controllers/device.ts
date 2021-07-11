@@ -29,10 +29,8 @@ export default function (app: Express, db: Connection) {
         console.error(err);
       }
       if (!err) {
-        console.log('sagsaga');
         db.query(getInsertedIdQuery, (err, result) => {
           if (result) {
-            console.log(result);
             const id = result[0]['LAST_INSERT_ID()'];
             db.query(getSingleDeviceQuery(id), (err, devices) => {
               res.json(devices[0]);
